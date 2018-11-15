@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "stylelint-no-unsupported-browser-features"
+  ],
+  "rules": {
+    "at-rule-empty-line-before": ["always", {
+      "except": [
+        "after-same-name",
+        "inside-block",
+        "blockless-after-same-name-blockless",
+        "blockless-after-blockless"
+      ]
+    }],
+    "color-hex-length": "long",
+    "rule-empty-line-before": ["always-multi-line", {
+      "ignore": "inside-block"
+    }],
+    "selector-pseudo-class-no-unknown": true,
+    "plugin/no-unsupported-browser-features": true
+  }
+}
