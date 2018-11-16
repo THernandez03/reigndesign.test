@@ -149,6 +149,10 @@ export default () => {
       }),
       new webpack.HotModuleReplacementPlugin(),
     ];
+    config.watchOptions = {
+      aggregateTimeout: 300,
+      poll: 1000,
+    };
     config.devServer = {
       port: 4000,
       host: '0.0.0.0',

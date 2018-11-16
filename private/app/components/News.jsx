@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { prettyDate } from '../utils/date';
+import TrashIcon from '../assets/trash.svg';
 
 export const NewsList = styled.div`
   display: flex;
@@ -25,10 +27,10 @@ export const NewsItem = styled(({ className, href, title, author, date }) => (
         <span>- {author} -</span>
       </div>
       <div>
-        <span>{date}</span>
+        <span>{prettyDate(date)}</span>
       </div>
       <div>
-        <span>_</span>
+        <TrashIcon />
       </div>
     </div>
   </a>
@@ -40,6 +42,7 @@ export const NewsItem = styled(({ className, href, title, author, date }) => (
   cursor: pointer;
   text-decoration: none;
   transition: margin 0.5s, padding 0.5s;
+  ${props => props.theme.texts.item};
 
   @media (max-width: 900px) {
     padding: 25px 0;
@@ -59,7 +62,6 @@ export const NewsItem = styled(({ className, href, title, author, date }) => (
       flex-grow: 1;
 
       & > span:first-of-type {
-        ${props => props.theme.texts.item};
         margin-right: 15px;
         font-weight: bold;
         color: ${props => props.theme.colors.primary};
@@ -69,6 +71,11 @@ export const NewsItem = styled(({ className, href, title, author, date }) => (
         ${props => props.theme.texts.itemAuthor};
         color: ${props => props.theme.colors.secondary};
       }
+    }
+
+    & > div:nth-child(2) {
+      margin: 0 10px;
+      color: ${props => props.theme.colors.primary};
     }
   }
 `;
