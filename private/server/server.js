@@ -35,21 +35,24 @@ app.get('/*', (req, res) => {
   });
 });
 
-(async () => {
-  const connection = await mongodb.connect(
-    'mongodb://127.0.0.1:27017/reigndesign',
+console.log('Connecting to MongoDB....');
+
+mongodb
+  .connect(
+    'mongodb://10.1.1.2:27017/reigndesign',
     { useNewUrlParser: true, useCreateIndex: true },
-  );
+  )
+  .then(() => {
+    console.log('MongoDB connected successfully');
 
-  connection.once('connected', () => {
-    console.log('Connected Successfully to MongoDB');
-
-    fetcher.start();
+    return fetcher.start();
+  })
+  .catch(() => {
+    console.log('Something went wrong');
   });
 
-  /* eslint-disable promise/prefer-await-to-callbacks */
-  app.listen(3000, err => {
-    if (err) throw new Error(err);
-    console.log(`Express is listening`);
-  });
-})();
+/* eslint-disable promise/prefer-await-to-callbacks */
+app.listen(3000, err => {
+  if (err) throw new Error(err);
+  console.log(`Express is listening`);
+});
