@@ -4,6 +4,11 @@
 
 - Install [Docker](https://www.docker.com/get-docker).
 - Install [Docker Compose](https://docs.docker.com/compose/install/).
+- Install dependencies
+
+```bash
+npm i
+```
 
 - Run
 
@@ -15,7 +20,7 @@ docker-compose up
 
 ### Caveats
 
-- If you want to make updates to the app, you should install all dependencies locally to make tooling work like `eslint`, `husky`, `prettier`, etc.
+- If you want to make updates to the app, you should install all devDependencies to make tooling work like `eslint`, `husky`, `prettier`, etc.
 
 ```bash
 npm i
