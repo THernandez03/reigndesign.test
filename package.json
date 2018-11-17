@@ -12,9 +12,8 @@
     "email": "tomas.hernandez03@gmail.com"
   },
   "scripts": {
-    "start": "parallelshell \"npm run server\" \"npm run webpack\" \"npm run worker\"",
-    "server": "nodemon private/server/entry.js",
-    "worker": "nodemon private/worker/entry.js",
+    "start": "parallelshell \"npm run server\" \"npm run webpack\"",
+    "server": "nodemon -x \"node --inspect private/server/entry.js\"",
     "webpack": "webpack-dev-server --config webpack.config.babel.js"
   },
   "husky": {
@@ -53,6 +52,7 @@
     "cron": "^1.5.0",
     "date-fns": "^1.29.0",
     "express": "^4.16.4",
+    "got": "^9.3.2",
     "helmet": "^3.15.0",
     "hpp": "^0.2.2",
     "locale": "^0.1.0",

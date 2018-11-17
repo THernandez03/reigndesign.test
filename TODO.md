@@ -1,0 +1,8 @@
+- Dynamic environment variables
+- Use pm2 instead of nodemon
+- Separate server from api
+- Better folder structure for routes/handlers on api
+- Try React Hooks
+- Add toast when click over a row with no link provided
+- Better error handling
+- Better styes to "No items Found" or "Errors" or "Loadings"

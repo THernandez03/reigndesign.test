@@ -22,22 +22,34 @@ export default class Home extends React.Component {
     error: false,
   };
 
-  async componentDidMount() {
-    const endpoint =
-      'https://hn.algolia.com/api/v1/search_by_date?query=nodejs';
+  async onIconClick(id) {
+    const { news } = this.state;
+    const request = await fetch('/disable', {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
 
+    if (request.ok) {
+      this.setState({ news: news.filter(item => item.objectID !== id) });
+    }
+  }
+
+  async componentDidMount() {
     this.setState({ loading: true });
 
     try {
-      const request = await fetch(endpoint);
+      const request = await fetch('/news');
       const data = await request.json();
 
-      if (data?.hits?.length) {
-        this.setState({
-          news: data?.hits || [],
-          loading: false,
-        });
+      if (!data?.length) {
+        return this.setState({ loading: false });
       }
+
+      return this.setState({
+        news: data,
+        loading: false,
+      });
     } catch (err) {
       this.setState({
         error: { error: true, message: err.message },
@@ -58,6 +70,8 @@ export default class Home extends React.Component {
             <span>Loading...</span>;
           } else if (error) {
             <span>Something went wrong</span>;
+          } else if (!news.length) {
+            <span>No items to show</span>;
           } else {
             <NewsList>
               {news
@@ -65,11 +79,12 @@ export default class Home extends React.Component {
                 .sort((prev, next) => next.created_at_i - prev.created_at_i)
                 .map(items => (
                   <NewsItem
-                    key={items.story_id}
-                    href={items.story_url || items.url || '#'}
+                    key={items.objectID}
+                    href={items.story_url || items.url}
                     title={items.story_title || items.title}
                     author={items.author}
                     date={items.created_at}
+                    onClick={() => this.onIconClick(items.objectID)}
                   />
                 ))}
             </NewsList>;

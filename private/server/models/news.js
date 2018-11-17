@@ -1,26 +1,18 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-const {
-  Types: { ObjectId },
-} = Schema;
+const { Schema } = mongoose;
 
+/* eslint-disable camelcase */
 const schema = new Schema({
-  // id: { type: ObjectId },
-  // email: { type: String, lowercase: true, unique: true },
-  // password: { type: String },
-  // name: { type: String },
-  // avatar: { type: String },
-  // subscriptionId: { type: ObjectId, ref: 'Subscriptions', required: true },
-  // devicesId: [{ type: ObjectId, ref: 'Devices' }],
-  // token: {
-  //   value: { type: String },
-  //   tokenTypeId: { type: ObjectId, ref: 'TokenTypes' },
-  // },
-  // trialExpirationDate: { type: Date, default: Date.now() + defaultTrial },
-  // deviceLimit: { type: Number, default: 1 },
-  // forgotGUID: { type: String, index: true },
-  // registrationGUID: { type: String, required: true, unique: true, default: v4 },
-  // status: { type: Boolean, default: false },
+  objectID: { type: String, required: true, index: true, unique: true },
+  story_url: { type: String },
+  story_title: { type: String },
+  url: { type: String },
+  title: { type: String },
+  author: { type: String },
+  created_at: { type: Date },
+  created_at_i: { type: Number },
+  status: { type: Boolean },
 });
 
-export default mongoose.model('Users', schema, 'Users');
+export default mongoose.model('News', schema, 'News');

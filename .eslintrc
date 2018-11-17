@@ -210,7 +210,6 @@
     "import/no-internal-modules": 0,
     "import/no-mutable-exports": 2,
     "import/no-named-as-default": 2,
-    "import/no-named-as-default-member": 2,
     "import/no-named-default": 2,
     "import/no-namespace": 0,
     "import/no-nodejs-modules": 0,
@@ -231,6 +230,7 @@
     "jsx-a11y/lang": 2,
     "jsx-a11y/no-static-element-interactions": 0,
     "unicorn/filename-case": 0,
+    "unicorn/explicit-length-check": 0,
     "unicorn/catch-error-name": [2, { "name": "err" }]
   }
 }
